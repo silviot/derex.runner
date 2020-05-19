@@ -21,7 +21,8 @@ runner = CliRunner(mix_stderr=False)
 
 @pytest.mark.slowtest
 def test_derex_compile_theme(workdir_copy, sys_argv):
-    with workdir_copy(COMPLETE_PROJ):
+    with workdir_copy(COMPLETE_PROJ) as wdc:
+        print(wdc)
         result = runner.invoke(derex_cli_group, ["compile-theme"])
         assert_result_ok(result)
         assert os.path.isdir(Project().root / ".derex")
